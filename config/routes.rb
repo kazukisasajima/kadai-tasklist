@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/new'
-  get 'users/create'
   # For details on the DSL vailable within this file, see https://guides.rubyonrails.org/routing.html
+  # root to: 'toppages#index'
+  root to: 'tasks#index'
   
-  get 'toppages/index'
-  
-  root to: 'toppages#index'
-  # root to: 'tasks#index'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
   
-  resources :users, only: [:index, :show, :create, :update]
+  resources :users, only: :create
   resources :tasks
 end
